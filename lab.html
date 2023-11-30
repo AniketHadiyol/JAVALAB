@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Dynamic Shopping List</title>
+ <style>
+        body {
+ font-family: Arial, sans-serif;
+}
+
+.navbar {
+ overflow: hidden;
+ background-color: #eb0404;
+}
+
+.navbar a {
+ float: left;
+ display: block;
+ color: #090707;
+ text-align: center;
+ padding: 14px 16px;
+ text-decoration: none;
+}
+
+.navbar a:hover {
+ background-color: #dddddd;
+ color: black;
+}
+
+.navbar a.active {
+ background-color: #4caf50;
+ color: white;
+}
+
+@media screen and (max-width: 600px) {
+ .navbar a {
+    float: none;
+    width: 100%;
+ }
+}
+
+.jumbotron {
+ background-color: #f10404;
+ color: black;
+ padding: 20px;
+ font-size: 25px;
+ text-align: center;
+}
+
+.container {
+ margin-top: 30px;
+ text-align: center;
+}
+
+.row {
+ margin-top: 30px;
+}
+
+.column {
+ padding: 10px;
+}
+
+.column:hover {
+ background-color: #e30808;
+}
+
+.column a {
+ color: black;
+ text-decoration: none;
+}
+
+.column a:hover {
+ color: rgb(247, 3, 3);
+ text-decoration: none;
+}
+
+.footer {
+ background-color: #333;
+ color: rgb(249, 12, 12);
+ text-align: center;
+ padding: 10px;
+}
+ </style>
+</head>
+<body>
+ <div class="container">
+    <h1>My Shopping List</h1>
+    <div class="form-input">
+      <input type="text" id="input-item" placeholder="Enter a new item">
+      <button id="add-item">Add item</button>
+    </div>
+    <ul id="shopping-list"></ul>
+ </div>
+
+ <script>
+    const list = document.getElementById('shopping-list');
+    const inputItem = document.getElementById('input-item');
+    const addItemButton = document.getElementById('add-item');
+
+    function addItem() {
+      const itemText = inputItem.value.trim();
+
+      inputItem.value = '';
+
+      const listItem = document.createElement('li');
+      const itemSpan = document.createElement('span');
+      const deleteButton = document.createElement('button');
+
+      itemSpan.textContent = itemText;
+      deleteButton.textContent = 'Delete';
+
+      listItem.appendChild(itemSpan);
+      listItem.appendChild(deleteButton);
+
+      list.appendChild(listItem);
+
+      deleteButton.addEventListener('click', () => {
+        list.removeChild(listItem);
+      });
+
+      inputItem.focus();
+    }
+
+    addItemButton.addEventListener('click', addItem);
+ </script>
+</body>
+</html>
